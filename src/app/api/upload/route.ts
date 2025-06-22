@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createErrorResponse, createSuccessResponse, validateResumeData } from '@/lib/utils';
 import { ResumeData, UploadResponse } from '@/lib/types';
-import pdf from 'pdf-parse';
 
 export async function POST(request: NextRequest): Promise<NextResponse<UploadResponse>> {
   try {
@@ -29,6 +28,8 @@ export async function POST(request: NextRequest): Promise<NextResponse<UploadRes
     // Extract text based on file type
     if (file.type === 'application/pdf') {
       try {
+        // Dynamic import to avoid issues with pdf-parse
+        const pdf = (await import('pdf-parse')).default;
         const arrayBuffer = await file.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
         const pdfData = await pdf(buffer);
