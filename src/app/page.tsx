@@ -1,102 +1,109 @@
-import Image from "next/image";
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 relative overflow-hidden">
+      {/* Floating Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 text-4xl floating" style={{ animationDelay: '0s' }}>🌸</div>
+        <div className="absolute top-40 right-20 text-3xl floating" style={{ animationDelay: '1s' }}>✨</div>
+        <div className="absolute bottom-40 left-20 text-2xl floating" style={{ animationDelay: '2s' }}>💫</div>
+        <div className="absolute bottom-20 right-10 text-3xl floating" style={{ animationDelay: '0.5s' }}>🌟</div>
+        <div className="absolute top-1/2 left-1/4 text-2xl floating" style={{ animationDelay: '1.5s' }}>🎀</div>
+        <div className="absolute top-1/3 right-1/3 text-3xl floating" style={{ animationDelay: '0.8s' }}>💖</div>
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Header */}
+      <header className="bg-white/80 backdrop-blur-sm border-b border-pink-200/50 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-6">
+            <div className="flex items-center">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent sparkle">
+                ✨ Resume Job Matcher ✨
+              </h1>
+            </div>
+            <nav className="hidden md:flex space-x-8">
+              <Link href="/" className="text-gray-700 hover:text-pink-500 transition-colors font-medium">
+                🏠 Home
+              </Link>
+              <Link href="/results" className="text-gray-700 hover:text-pink-500 transition-colors font-medium">
+                📊 Results
+              </Link>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+        <div className="text-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 sparkle">
+            <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
+              Find Your Perfect
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-cyan-500 via-mint-500 to-yellow-400 bg-clip-text text-transparent">
+              Job Match ✨
+            </span>
+          </h1>
+          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Upload your resume and get matched with the latest software engineering opportunities 
+            from LinkedIn, Indeed, Glassdoor, and CareerBrew! We'll find jobs posted in the last 2 days 
+            that best match your skills and experience! 🚀
+          </p>
+          
+          {/* Features */}
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <div className="kawaii-card p-6 floating" style={{ animationDelay: '0s' }}>
+              <div className="w-16 h-16 bg-gradient-to-br from-pink-200 to-purple-200 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
+                <span className="text-2xl">📄</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Smart Resume Parsing</h3>
+              <p className="text-gray-600">Upload PDF or TXT resumes and we'll extract all your skills and experience with AI magic! ✨</p>
+            </div>
+            
+            <div className="kawaii-card p-6 floating" style={{ animationDelay: '0.3s' }}>
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-200 to-cyan-200 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
+                <span className="text-2xl">🔍</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Real-time Job Scraping</h3>
+              <p className="text-gray-600">We search across multiple job platforms for the latest software engineering roles! 🌟</p>
+            </div>
+            
+            <div className="kawaii-card p-6 floating" style={{ animationDelay: '0.6s' }}>
+              <div className="w-16 h-16 bg-gradient-to-br from-mint-200 to-green-200 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg">
+                <span className="text-2xl">🤖</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">AI-Powered Matching</h3>
+              <p className="text-gray-600">Get match scores from 0-100 based on how well your resume fits each job! 💖</p>
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="space-y-4">
+            <Link 
+              href="/upload"
+              className="kawaii-button inline-flex items-center text-lg px-8 py-4 sparkle"
+            >
+              <span className="mr-2">📤</span>
+              Upload Resume & Find Jobs
+              <span className="ml-2">🚀</span>
+            </Link>
+            <p className="text-sm text-gray-500">
+              Supports PDF and TXT files • Free to use • No registration required • ✨ Kawaii approved! ✨
+            </p>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="bg-white/80 backdrop-blur-sm border-t border-pink-200/50 mt-20 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center text-gray-600">
+            <p>&copy; 2024 Resume Job Matcher. Built with Next.js, AI, and lots of kawaii love! 💕</p>
+            <p className="text-sm mt-2">✨ Making job hunting magical since 2024 ✨</p>
+          </div>
+        </div>
       </footer>
     </div>
   );
