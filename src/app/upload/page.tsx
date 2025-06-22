@@ -1,6 +1,30 @@
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
+import FileUpload from '@/components/FileUpload';
+import { ProcessingSpinner } from '@/components/LoadingSpinner';
 
 export default function UploadPage() {
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [resumeText, setResumeText] = useState<string>('');
+
+  const handleFileSelect = (file: File) => {
+    console.log('File selected:', file.name);
+  };
+
+  const handleFileProcess = async (text: string) => {
+    setIsProcessing(true);
+    setResumeText(text);
+    
+    // Simulate processing time
+    setTimeout(() => {
+      setIsProcessing(false);
+      // Here we would typically redirect to results or start job scraping
+      console.log('Resume processed:', text.substring(0, 100) + '...');
+    }, 2000);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 relative overflow-hidden">
       {/* Floating Background Elements */}
@@ -47,21 +71,16 @@ export default function UploadPage() {
           </p>
         </div>
 
-        {/* Upload Area */}
-        <div className="kawaii-card p-8 floating">
-          <div className="border-2 border-dashed border-pink-300 rounded-2xl p-12 text-center hover:border-pink-400 transition-colors bg-gradient-to-br from-pink-50 to-purple-50">
-            <div className="text-6xl mb-4 floating" style={{ animationDelay: '0s' }}>📤</div>
-            <h3 className="text-xl font-medium text-gray-900 mb-2">
-              Drop your resume here ✨
-            </h3>
-            <p className="text-gray-500 mb-4">
-              or click to browse files 🎀
-            </p>
-            <p className="text-sm text-gray-400">
-              Supports PDF and TXT files up to 10MB • 💖 Kawaii approved! 💖
-            </p>
-          </div>
-        </div>
+        {/* File Upload Component */}
+        {!isProcessing ? (
+          <FileUpload 
+            onFileSelect={handleFileSelect}
+            onFileProcess={handleFileProcess}
+            isLoading={isProcessing}
+          />
+        ) : (
+          <ProcessingSpinner />
+        )}
 
         {/* Instructions */}
         <div className="mt-8 kawaii-card p-6 bg-gradient-to-r from-blue-50 to-cyan-50">

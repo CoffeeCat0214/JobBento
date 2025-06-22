@@ -1,4 +1,5 @@
 import { ResumeData } from './types';
+import { NextResponse } from 'next/server';
 
 // File processing utilities
 export const isValidFileType = (file: File): boolean => {
@@ -66,15 +67,15 @@ export const validateResumeData = (data: Partial<ResumeData>): boolean => {
 
 // Error handling
 export const createErrorResponse = (message: string, status: number = 400) => {
-  return new Response(JSON.stringify({ success: false, error: message }), {
-    status,
-    headers: { 'Content-Type': 'application/json' }
-  });
+  return NextResponse.json(
+    { success: false, error: message },
+    { status }
+  );
 };
 
 export const createSuccessResponse = <T>(data: T, status: number = 200) => {
-  return new Response(JSON.stringify({ success: true, data }), {
-    status,
-    headers: { 'Content-Type': 'application/json' }
-  });
+  return NextResponse.json(
+    { success: true, data },
+    { status }
+  );
 }; 
